@@ -1,0 +1,207 @@
+
+k3d cluster create -c k3d.yaml
+INFO[0000] Using config file k3d.yaml (k3d.io/v1alpha3#simple)
+INFO[0000] portmapping '10808:10808' targets the loadbalancer: defaulting to [servers:*:proxy agents:*:proxy]
+INFO[0000] Prep: Network
+INFO[0000] Re-using existing network 'k3d-gm-demo' (f5b30afd432ec71f4af3373371d3171d868bce0570755778d9c373ec255df29b)
+INFO[0000] Created volume 'k3d-gm-demo-images'
+INFO[0000] Starting new tools node...
+INFO[0000] Starting Node 'k3d-gm-demo-tools'
+INFO[0001] Creating node 'k3d-gm-demo-server-0'
+INFO[0001] Creating node 'k3d-gm-demo-agent-0'
+INFO[0001] Creating node 'k3d-gm-demo-agent-1'
+INFO[0001] Creating LoadBalancer 'k3d-gm-demo-serverlb'
+INFO[0001] Using the k3d-tools node to gather environment information
+INFO[0001] HostIP: using network gateway 192.168.64.1 address
+INFO[0001] Starting cluster 'gm-demo'
+INFO[0001] Starting servers...
+INFO[0001] Starting Node 'k3d-gm-demo-server-0'
+INFO[0005] Starting agents...
+INFO[0005] Starting Node 'k3d-gm-demo-agent-1'
+INFO[0005] Starting Node 'k3d-gm-demo-agent-0'
+INFO[0014] Starting helpers...
+INFO[0014] Starting Node 'k3d-gm-demo-serverlb'
+INFO[0023] Injecting '192.168.64.1 host.k3d.internal' into /etc/hosts of all nodes...
+INFO[0023] Injecting records for host.k3d.internal and for 4 network members into CoreDNS configmap...
+INFO[0024] Cluster 'gm-demo' created successfully!
+INFO[0024] You can now use it like this:
+kubectl cluster-info
+
+kubectl create namespace gm-operator --save-config
+namespace/gm-operator created
+
+kubectl create secret docker-registry gm-docker-secret ...
+secret/gm-docker-secret created
+
+kubectl apply -k ../operator/config/context/kubernetes  # https://github.com/greymatter-io/operator
+namespace/gm-operator configured
+customresourcedefinition.apiextensions.k8s.io/meshes.greymatter.io created
+serviceaccount/gm-operator created
+role.rbac.authorization.k8s.io/gm-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/gm-operator-role created
+rolebinding.rbac.authorization.k8s.io/gm-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/gm-operator-rolebinding created
+configmap/gm-operator-config created
+secret/gm-webhook-cert created
+service/gm-webhook created
+deployment.apps/gm-operator created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/gm-mutate-config created
+validatingwebhookconfiguration.admissionregistration.k8s.io/gm-validate-config created
+pod/gm-operator-5f444d5b-lmvtd condition met
+pod/agent-n9bxv condition met
+pod/agent-bqh4h condition met
+pod/agent-rz6m7 condition met
+
+kubectl apply -f mesh.yaml
+namespace/greymatter created
+mesh.greymatter.io/fibonacci-mesh created
+namespace/fibonacci-namespace created
+
+kubectl apply -f deployment.yaml
+deployment.apps/fibonacci-deployment created
+
+go run checktime.go
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Get "http://localhost:10808/services/fibonacci-deployment": EOF
+Took 2m23.09137496s

@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: greymatter
+...
+---
+apiVersion: greymatter.io/v1alpha1
+kind: Mesh
+metadata:
+  name: fibonacci-mesh
+  namespace: greymatter
+spec:
+  release_version: '1.7'
+  zone: default-zone
+  install_namespace: greymatter
+  watch_namespaces:
+    - fibonacci-namespace
+...
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fibonacci-namespace
+...
